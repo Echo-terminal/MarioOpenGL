@@ -7,6 +7,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
+//=====================================================================================
+
+
+
 // ====================================================================================
 
 Game::Game(unsigned int width, unsigned int height)
@@ -54,10 +58,19 @@ bool Game::Init() {
         std::cerr << "Player texture load failed\n";
         return false;
     }
+    // проверОчка на текстуры
+    for (int i = 0; i < 5; i++)
+    {
+        if (!block[i].LoadTexture("block.png", block[i].textureID))
+        {
+            std::cerr << "Block texture load failed\n";
+            return false;
+        }
+    }
+    
 
     // Инициализируем позицию игрока в "мире"
     player.position = glm::vec2(400.0f, 300.0f); // Стартовая позиция в мире
-
     // Инициализируем камеру - центрируем на игроке
     UpdateCamera();
 
@@ -86,6 +99,27 @@ void Game::Update(float deltaTime) {
         if (player.position.y <= 100.0f) {
             player.position.y = 100.0f;
             player.isJumping = false;
+        }
+    }
+    
+    //чекаем жестко колизию
+    for (int i = 0; i < 5; ++i) {
+        Collision info = player.CheckCollisionWith(block[i]);
+
+        if (info.isColliding) {
+            std::cout << "Collision with block " << i << " from: " << info.side << "\n";
+
+           //перемещаем нарушителя колизийного покоя 
+           //в зависимости от того с какой стороны он 
+            if (info.side == "bottom" || info.side == "top")
+                player.position.y = block[i].position.y - player.size.y;
+            if (info.side == "right")
+                player.position.x = block[i].position.x - player.size.x;
+            else if (info.side == "left")
+                player.position.x = block[i].position.x + player.size.x;
+            
+            
+            
         }
     }
 
@@ -121,16 +155,24 @@ void Game::Render() {
     glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
 
     player.Render(shaderProgram, projection);
+   
 
     // Здесь можно рендерить другие объекты мира
-    // RenderWorld();
+    RenderWorld();
 }
 
+
+
 void Game::RenderWorld() {
-    // Здесь будут рендериться статичные объекты мира:
-    // платформы, враги, коллектибы и т.д.
-    // Все координаты объектов указываются в мировых координатах,
-    // а камера автоматически их преобразует для отображения
+    block[0].position = glm::vec2(400.0f, 332.0f);
+    block[1].position = glm::vec2(432.0f, 300.0f);
+    block[2].position = glm::vec2(432.0f, 268.0f);
+    block[3].position = glm::vec2(368.0f, 300.0f);
+    block[0].Render(shaderProgram, projection);
+    block[1].Render(shaderProgram, projection);
+    block[2].Render(shaderProgram, projection);
+    block[3].Render(shaderProgram, projection);
+    //пока так рендерим мир 
 }
 
 glm::vec2 Game::WorldToScreen(const glm::vec2& worldPos) {
@@ -223,3 +265,5 @@ GLuint Game::LoadShaders(const char* vertexPath, const char* fragmentPath) {
     glDeleteShader(fragment);
     return ID;
 }
+
+

@@ -1,6 +1,8 @@
 #include <stb_image.h>     
 #include "Player.h"
 
+
+
 Player::Player()
     : position(0.0f, 0.0f), speed(400.0f),  // Увеличил с 200 до 400
     jumpSpeed(2.0f), isJumping(false),
@@ -96,3 +98,39 @@ void Player::InitRenderData() {
 
     initialized = true;
 }
+
+
+// я сам хз как оно работает
+Collision Player::CheckCollisionWith(const Block& block) const{
+    Collision result;
+
+    glm::vec2 posA = position;
+    glm::vec2 sizeA = size;
+
+    glm::vec2 posB = block.position;
+    glm::vec2 sizeB = glm::vec2(32.0f, 32.0f); // фиксированный размер блока
+
+    bool xOverlap = posA.x < posB.x + sizeB.x && posA.x + sizeA.x > posB.x;
+    bool yOverlap = posA.y < posB.y + sizeB.y && posA.y + sizeA.y > posB.y;
+
+    if (xOverlap && yOverlap) {
+        result.isColliding = true;
+
+        float deltaRight = (posA.x + sizeA.x) - posB.x;
+        float deltaLeft = (posB.x + sizeB.x) - posA.x;
+        float deltaBottom = (posA.y + sizeA.y) - posB.y;
+        float deltaTop = (posB.y + sizeB.y) - posA.y;
+
+        float minX = std::min(deltaRight, deltaLeft);
+        float minY = std::min(deltaBottom, deltaTop);
+
+        if (minX < minY)
+            result.side = (deltaRight < deltaLeft) ? "right" : "left";
+        else
+            result.side = (deltaBottom < deltaTop) ? "bottom" : "top";
+    }
+
+    return result;
+}
+
+

@@ -4,9 +4,12 @@
 #include <GLFW/glfw3.h>
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
+#include <vector>
+#include <string>
 
 // Предполагаем, что у вас есть класс Player
 #include "Player.h"
+#include "Block.h"
 
 class Game {
 public:
@@ -18,6 +21,7 @@ public:
     void Update(float deltaTime);
     void Render();
     void CleanUp();
+    bool loadLvl(const std::string& path);
 
     // Камера
     void UpdateCamera();
@@ -47,6 +51,7 @@ private:
 
     // Игровые объекты
     Player player;
+    Block block[5];
 
     // Вспомогательные функции
     GLuint LoadShaders(const char* vertexPath, const char* fragmentPath);

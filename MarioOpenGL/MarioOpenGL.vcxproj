@@ -104,12 +104,12 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Game Projects\MarioOpenGL\Libraries_C++\stb_image;C:\Game Projects\MarioOpenGL\Libraries_C++\glm;C:\Game Projects\MarioOpenGL\Libraries_C++\glad\include;C:\Game Projects\MarioOpenGL\Libraries_C++\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Game Projects\MarioOpenGL\Libraries_C++\stb_image;C:\Game Projects\MarioOpenGL\Libraries_C++\glm;C:\Game Projects\MarioOpenGL\Libraries_C++\glad\include;C:\Game Projects\MarioOpenGL\Libraries_C++\glfw\include;D:\mario\MarioOpenGL\Libraries_C++\stb_image;D:\mario\MarioOpenGL\Libraries_C++\glfw\include;D:\mario\MarioOpenGL\Libraries_C++\glad\include;D:\mario\MarioOpenGL\Libraries_C++\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Game Projects\MarioOpenGL\Libraries_C++\glfw\lib-vc2022;C:\Game Projects\MarioOpenGL\Libraries_C++\stb_image;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Game Projects\MarioOpenGL\Libraries_C++\glfw\lib-vc2022;C:\Game Projects\MarioOpenGL\Libraries_C++\stb_image;D:\mario\MarioOpenGL\Libraries_C++\glfw\lib-vc2022;D:\mario\MarioOpenGL\Libraries_C++\stb_image;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
@@ -121,18 +121,19 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Game Projects\MarioOpenGL\Libraries_C++\stb_image;C:\Game Projects\MarioOpenGL\Libraries_C++\glm;C:\Game Projects\MarioOpenGL\Libraries_C++\glad\include;C:\Game Projects\MarioOpenGL\Libraries_C++\glfw\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Game Projects\MarioOpenGL\Libraries_C++\stb_image;C:\Game Projects\MarioOpenGL\Libraries_C++\glm;C:\Game Projects\MarioOpenGL\Libraries_C++\glad\include;C:\Game Projects\MarioOpenGL\Libraries_C++\glfw\include;D:\mario\MarioOpenGL\Libraries_C++\stb_image;D:\mario\MarioOpenGL\Libraries_C++\glfw\include;D:\mario\MarioOpenGL\Libraries_C++\glad\include;D:\mario\MarioOpenGL\Libraries_C++\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Game Projects\MarioOpenGL\Libraries_C++\glfw\lib-vc2022;C:\Game Projects\MarioOpenGL\Libraries_C++\stb_image;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>C:\Game Projects\MarioOpenGL\Libraries_C++\glfw\lib-vc2022;C:\Game Projects\MarioOpenGL\Libraries_C++\stb_image;D:\mario\MarioOpenGL\Libraries_C++\glfw\lib-vc2022;D:\mario\MarioOpenGL\Libraries_C++\stb_image;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <AdditionalDependencies>glfw3.lib;opengl32.lib;user32.lib;gdi32.lib;shell32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Block.cpp" />
     <ClCompile Include="Game.cpp" />
     <ClCompile Include="glad.c" />
     <ClCompile Include="Player.cpp" />
@@ -140,6 +141,7 @@
     <ClCompile Include="stb_image_impl.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Block.h" />
     <ClInclude Include="Game.h" />
     <ClInclude Include="Player.h" />
   </ItemGroup>
