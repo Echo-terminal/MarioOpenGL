@@ -71,9 +71,10 @@ void Game::ProcessInput(float deltaTime) {
         player.Move(-deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         player.Move(deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
-        player.position = glm::vec2(0.0f);
-        //player.position = PlayerStartPos
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
+        player.position = PlayerStartPos;
+        player.onGround = true;
+    }
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && player.onGround) {
         player.speedY = -300.0f;
         player.onGround = false;
@@ -90,7 +91,7 @@ void Game::Update(float deltaTime) {
     //теперь ещЄ мы тут и провер€ем на buf | dvorax
     for (int i = 0; i < blocks.size(); i++) 
     {
-        Collision info = player.CheckCollisionWithBlock(blocks[i]);
+        Collision info = player.CheckCollision(blocks[i]);
         blocks[i].Buf(deltaTime);
 
         if (info.isColliding) {
@@ -108,7 +109,6 @@ void Game::Update(float deltaTime) {
                 blocks[i].isBuf = true;
             }
             else if (info.side == "bottom") {
-               
                 player.position.y = blocks[i].position.y - player.size.y;
             }
             else if (info.side == "right") {
@@ -122,6 +122,9 @@ void Game::Update(float deltaTime) {
 
     player.onGround = isOnGround;
 
+    for (Enemy& enemy : enemies) {
+        enemy.Update(deltaTime, blocks);
+    }
 
     // ќбновл€ем камеру после движени€ игрока
     UpdateCamera();
@@ -132,7 +135,6 @@ void Game::UpdateCamera() {
 
     //по Y нам не надо камеру двигать, в оригинале было так 
     // число то что верху это то значение которое на старте высчитываетс€ | dvorax
-    //cameraY = player.position.y - screenHeight / 1.19f; 
     
    
     // ћожно добавить ограничени€ камеры, например:
@@ -187,6 +189,14 @@ bool Game::loadLvl(const std::string& path)
                 player.position = PlayerStartPos;
                 continue;
             }
+            if (symbol == 'E')
+            {
+                Enemy enemy(glm::vec2(i * 32, row * 32)); // границы ±5 блоков
+                if (!enemy.LoadTexture("enemy.png", enemy.textureID))
+                    return false;
+                enemies.push_back(enemy);
+                continue;
+            }
             Block block;
             block.position = glm::vec2(i * 32, row * 32);
             if (!block.LoadTexture(block.getTex(symbol).c_str(), block.textureID))
@@ -201,6 +211,8 @@ bool Game::loadLvl(const std::string& path)
 void Game::RenderWorld() {
     for (Block& block : blocks) 
         block.Render(shaderProgram, projection);
+    for (Enemy& enemy : enemies)
+        enemy.Render(shaderProgram, projection);
 }
 
 glm::vec2 Game::WorldToScreen(const glm::vec2& worldPos) {
@@ -225,6 +237,12 @@ void Game::CleanUp() {
     if (window) {
         glfwDestroyWindow(window);
         window = nullptr;
+    }
+    for (Enemy& enemy : enemies) {
+        if (enemy.textureID != 0) {
+            glDeleteTextures(1, &enemy.textureID);
+            enemy.textureID = 0;
+        }
     }
     glfwTerminate();
 }

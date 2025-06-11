@@ -1,6 +1,2 @@
-﻿  Block.cpp
-  Game.cpp
-  Player.cpp
-  Source.cpp
-  Generating Code...
-  MarioOpenGL.vcxproj -> D:\mario\MarioOpenGL\x64\Debug\MarioOpenGL.exe
+﻿  Enemy.cpp
+  MarioOpenGL.vcxproj -> C:\Game Projects\MarioOpenGL\x64\Debug\MarioOpenGL.exe

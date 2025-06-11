@@ -10,6 +10,7 @@
 // Предполагаем, что у вас есть класс Player
 #include "Player.h"
 #include "Block.h"
+#include "Enemy.h"
 
 class Game {
 public:
@@ -52,6 +53,7 @@ private:
     // Игровые объекты
     Player player;
     std::vector<Block> blocks;
+    std::vector<Enemy> enemies;
 
     glm::vec2 PlayerStartPos;
 

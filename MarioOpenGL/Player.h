@@ -34,7 +34,7 @@ public:
     void Falling(float change);
     bool LoadTexture(const char* path, GLuint& textureID);
     void Render(GLuint shaderProgram, const glm::mat4& projection);
-    Collision CheckCollisionWithBlock(const Block& block) const;
+    Collision CheckCollision(const Block& block) const;
 
 private:
     bool initialized;

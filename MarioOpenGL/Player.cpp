@@ -109,7 +109,7 @@ void Player::InitRenderData() {
 
 
 // я сам хз как оно работает
-Collision Player::CheckCollisionWithBlock(const Block& block) const {
+Collision Player::CheckCollision(const Block& block) const {
     Collision result;
 
     glm::vec2 posA = position;
