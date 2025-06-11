@@ -7,16 +7,13 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-//=====================================================================================
-
-
-
 // ====================================================================================
 
 Game::Game(unsigned int width, unsigned int height)
     : screenWidth(width), screenHeight(height),
     window(nullptr), shaderProgram(0),
-    cameraX(0.0f), cameraY(0.0f) {}
+    cameraX(0.0f), cameraY(-280.202f) {}
+ //                   ^насчёт этого читай ниже | dvorax
 
 Game::~Game() {
     CleanUp();
@@ -58,20 +55,10 @@ bool Game::Init() {
         std::cerr << "Player texture load failed\n";
         return false;
     }
-    // проверОчка на текстуры
-    for (int i = 0; i < 5; i++)
-    {
-        if (!block[i].LoadTexture("block.png", block[i].textureID))
-        {
-            std::cerr << "Block texture load failed\n";
-            return false;
-        }
-    }
+    if (!loadLvl("lvl.txt")) return false;
     
-
-    // Инициализируем позицию игрока в "мире"
-    player.position = glm::vec2(400.0f, 300.0f); // Стартовая позиция в мире
-    // Инициализируем камеру - центрируем на игроке
+    
+    
     UpdateCamera();
 
     return true;
@@ -102,21 +89,23 @@ void Game::Update(float deltaTime) {
         }
     }
     
-    //чекаем жестко колизию
-    for (int i = 0; i < 5; ++i) {
-        Collision info = player.CheckCollisionWith(block[i]);
+    //чекаем жестко колизию | dvorax
+    for (int i = 0; i < blocks.size(); i++) {
+        Collision info = player.CheckCollisionWith(blocks[i]);
 
         if (info.isColliding) {
             std::cout << "Collision with block " << i << " from: " << info.side << "\n";
 
            //перемещаем нарушителя колизийного покоя 
-           //в зависимости от того с какой стороны он 
-            if (info.side == "bottom" || info.side == "top")
-                player.position.y = block[i].position.y - player.size.y;
+           //в зависимости от того с какой стороны он | dvorax
+            if (info.side == "top")
+                player.position.y = blocks[i].position.y + player.size.y;
+            if (info.side == "bottom")
+                player.position.y = blocks[i].position.y - player.size.y;
             if (info.side == "right")
-                player.position.x = block[i].position.x - player.size.x;
-            else if (info.side == "left")
-                player.position.x = block[i].position.x + player.size.x;
+                player.position.x = blocks[i].position.x - player.size.x;
+            if (info.side == "left")
+                player.position.x = blocks[i].position.x + player.size.x;
             
             
             
@@ -130,10 +119,14 @@ void Game::Update(float deltaTime) {
 void Game::UpdateCamera() {
     // Центрируем камеру на игроке
     cameraX = player.position.x - screenWidth / 2.0f;
-    cameraY = player.position.y - screenHeight / 2.0f;
 
+    //по Y нам не надо камеру двигать, в оригинале было так 
+    // число то что верху это то значение которое на старте высчитывается | dvorax
+    //cameraY = player.position.y - screenHeight / 1.19f; 
+    
+   
     // Можно добавить ограничения камеры, например:
-    // if (cameraX < 0) cameraX = 0;
+     if (cameraX < 0) cameraX = 0;
     // if (cameraY < 0) cameraY = 0;
 
     // Создаем новую матрицу проекции с учетом позиции камеры
@@ -161,18 +154,43 @@ void Game::Render() {
     RenderWorld();
 }
 
+bool Game::loadLvl(const std::string& path)
+{
+    std::ifstream lvl(path);
+    if (!lvl.is_open())
+    {
+        std::cerr << "Failed to load level: " << path << std::endl;
+        return false;
+    }
+    std::string lvlLine;
+    int row = 0;
 
+    while (std::getline(lvl, lvlLine))
+    {
+
+        for (int i = 0; i < lvlLine.size(); i++)
+        {
+            char symbol = lvlLine[i];
+            if (symbol == '.') continue;
+            if (symbol == 'P')
+            {
+                player.position = glm::vec2(i * 32, row * 32);
+                continue;
+            }
+            Block block;
+            block.position = glm::vec2(i * 32, row * 32);
+            if (!block.LoadTexture(block.getTex(symbol).c_str(), block.textureID))
+                return false;
+            blocks.push_back(block);
+        }
+        row++;
+    }
+    return true;
+}
 
 void Game::RenderWorld() {
-    block[0].position = glm::vec2(400.0f, 332.0f);
-    block[1].position = glm::vec2(432.0f, 300.0f);
-    block[2].position = glm::vec2(432.0f, 268.0f);
-    block[3].position = glm::vec2(368.0f, 300.0f);
-    block[0].Render(shaderProgram, projection);
-    block[1].Render(shaderProgram, projection);
-    block[2].Render(shaderProgram, projection);
-    block[3].Render(shaderProgram, projection);
-    //пока так рендерим мир 
+    for (Block& block : blocks) 
+        block.Render(shaderProgram, projection);
 }
 
 glm::vec2 Game::WorldToScreen(const glm::vec2& worldPos) {

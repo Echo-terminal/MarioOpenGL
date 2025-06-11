@@ -6,6 +6,27 @@
 Block::Block()
     :position(0.0f, 0.0f), initialized(false), VAO(0), VBO(0), EBO(0){ }
 
+std::string Block::getTex(char symbol)
+{
+    switch (symbol)
+    {
+        case 'G':
+            return "block2.png";
+            break;
+        case 'B':
+            return "block.png";
+            break;
+        case 'L':
+            return "block1.png";
+            break;
+        case '?':
+            return "block3.png";
+            break;
+        default:
+            return "error.jpg"; 
+    }
+}
+
 bool Block::LoadTexture(const char* path, GLuint& textureID)
 {
     int width, height, nrChannels;

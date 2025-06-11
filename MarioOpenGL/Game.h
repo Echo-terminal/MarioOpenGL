@@ -51,7 +51,7 @@ private:
 
     // Игровые объекты
     Player player;
-    Block block[5];
+    std::vector<Block> blocks;
 
     // Вспомогательные функции
     GLuint LoadShaders(const char* vertexPath, const char* fragmentPath);
