@@ -87,8 +87,11 @@ void Game::Update(float deltaTime) {
     bool isOnGround = false;
 
     //чекаем жестко колизию | dvorax
-    for (int i = 0; i < blocks.size(); i++) {
+    //теперь ещЄ мы тут и провер€ем на buf | dvorax
+    for (int i = 0; i < blocks.size(); i++) 
+    {
         Collision info = player.CheckCollisionWithBlock(blocks[i]);
+        blocks[i].Buf(deltaTime);
 
         if (info.isColliding) {
             std::cout << "Collision with block " << i << " from: " << info.side << "\n";
@@ -102,8 +105,10 @@ void Game::Update(float deltaTime) {
             // –азруливаем столкновение
             if (info.side == "top") {
                 player.position.y = blocks[i].position.y + 32.0f; // высота блока
+                blocks[i].isBuf = true;
             }
             else if (info.side == "bottom") {
+               
                 player.position.y = blocks[i].position.y - player.size.y;
             }
             else if (info.side == "right") {

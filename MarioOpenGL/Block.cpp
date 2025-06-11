@@ -4,7 +4,9 @@
 
 
 Block::Block()
-    :position(0.0f, 0.0f), initialized(false), VAO(0), VBO(0), EBO(0){ }
+    :position(0.0f, 0.0f), 
+    isBuf(false), isJump(true), oldPos(0.0f),
+    initialized(false), VAO(0), VBO(0), EBO(0) { }
 
 std::string Block::getTex(char symbol)
 {
@@ -110,4 +112,37 @@ void Block::InitRenderData() {
     glBindVertexArray(0);
 
     initialized = true;
+}
+
+void Block::Buf(float deltaTime)
+{
+    if (!isBuf) return;
+    std::cout << "BUF" << std::endl;
+    if (oldPos == glm::vec2(0.0f, 0.0f)) oldPos = position;
+    
+    if (isJump)
+    {
+        position.y -= jumpSpeed * deltaTime;
+        
+        if (position.y <= oldPos.y - 16.0f)
+        {
+            position.y = oldPos.y - 16.0f;
+            isJump = false;
+        }
+    }
+    else
+    {
+        position.y += jumpSpeed * deltaTime;
+        if (position.y >= oldPos.y)
+        {
+            position.y = oldPos.y;
+            isJump = true;
+            oldPos = glm::vec2(0.0f, 0.0f);
+            isBuf = false;
+        }
+    }
+    
+   
+    
+    
 }

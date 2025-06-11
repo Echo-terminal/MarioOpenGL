@@ -1,29 +1,29 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Game Projects\\MarioOpenGL\\",
+  "WorkspaceRootPath": "D:\\mario\\MarioOpenGL\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Block.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
-      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Block.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Block.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|D:\\mario\\MarioOpenGL\\MarioOpenGL\\Block.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Block.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|D:\\mario\\MarioOpenGL\\MarioOpenGL\\Block.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Block.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|D:\\mario\\MarioOpenGL\\MarioOpenGL\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|D:\\mario\\MarioOpenGL\\MarioOpenGL\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|D:\\mario\\MarioOpenGL\\MarioOpenGL\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|D:\\mario\\MarioOpenGL\\MarioOpenGL\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
       "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
     }
   ],
@@ -34,41 +34,41 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 0,
               "Title": "Block.cpp",
-              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Block.cpp",
+              "DocumentMoniker": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Block.cpp",
               "RelativeDocumentMoniker": "MarioOpenGL\\Block.cpp",
-              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Block.cpp",
-              "RelativeToolTip": "MarioOpenGL\\Block.cpp",
-              "ViewState": "AgIAAF0AAAAAAAAAAAAAADYAAAArAAAAAAAAAA==",
+              "ToolTip": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Block.cpp*",
+              "RelativeToolTip": "MarioOpenGL\\Block.cpp*",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAAAIwAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-11T15:25:21.567Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "Block.h",
-              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Block.h",
+              "DocumentMoniker": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Block.h",
               "RelativeDocumentMoniker": "MarioOpenGL\\Block.h",
-              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Block.h",
-              "RelativeToolTip": "MarioOpenGL\\Block.h",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
+              "ToolTip": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Block.h*",
+              "RelativeToolTip": "MarioOpenGL\\Block.h*",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAAaAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-06-11T15:22:19.097Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "Player.h",
-              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.h",
+              "DocumentMoniker": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Player.h",
               "RelativeDocumentMoniker": "MarioOpenGL\\Player.h",
-              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.h",
+              "ToolTip": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Player.h",
               "RelativeToolTip": "MarioOpenGL\\Player.h",
               "ViewState": "AgIAAAgAAAAAAAAAAAAAABgAAAAQAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
@@ -77,26 +77,26 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Player.cpp",
-              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.cpp",
+              "DocumentMoniker": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Player.cpp",
               "RelativeDocumentMoniker": "MarioOpenGL\\Player.cpp",
-              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.cpp",
+              "ToolTip": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Player.cpp",
               "RelativeToolTip": "MarioOpenGL\\Player.cpp",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAIwBEAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-11T12:54:12.162Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 4,
               "Title": "Game.cpp",
-              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.cpp",
+              "DocumentMoniker": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Game.cpp",
               "RelativeDocumentMoniker": "MarioOpenGL\\Game.cpp",
-              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.cpp",
+              "ToolTip": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Game.cpp",
               "RelativeToolTip": "MarioOpenGL\\Game.cpp",
-              "ViewState": "AgIAADMAAAAAAAAAAAAAAE0AAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAF0AAAAAAAAAAAAmwHYAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
               "WhenOpened": "2025-06-11T12:54:33.781Z",
               "EditorCaption": ""
@@ -105,11 +105,11 @@
               "$type": "Document",
               "DocumentIndex": 5,
               "Title": "Game.h",
-              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.h",
+              "DocumentMoniker": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Game.h",
               "RelativeDocumentMoniker": "MarioOpenGL\\Game.h",
-              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.h",
+              "ToolTip": "D:\\mario\\MarioOpenGL\\MarioOpenGL\\Game.h",
               "RelativeToolTip": "MarioOpenGL\\Game.h",
-              "ViewState": "AgIAABsAAAAAAAAAAAAAADcAAAANAAAAAAAAAA==",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAADcAAAANAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
               "WhenOpened": "2025-06-11T15:22:29.167Z",
               "EditorCaption": ""

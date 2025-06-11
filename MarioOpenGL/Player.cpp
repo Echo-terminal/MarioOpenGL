@@ -19,7 +19,7 @@ void Player::Falling(float change) {
     if (onGround) return;
 
     speedY += gravity * change;
-
+    
     position.y += speedY * change;
 }
 
