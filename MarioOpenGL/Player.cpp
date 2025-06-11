@@ -4,8 +4,8 @@
 
 
 Player::Player()
-    : position(0.0f, 0.0f), speed(400.0f),  // Увеличил с 200 до 400
-    jumpSpeed(2.0f), isJumping(false),
+    : position(0.0f, 0.0f), speed(400.0f), gravity(900.0f),  // Увеличил с 200 до 400
+    speedY(0.0f), onGround(true),
     initialized(false), VAO(0), VBO(0), EBO(0) {}
 
 void Player::Move(float change) {
@@ -13,6 +13,14 @@ void Player::Move(float change) {
     position.x += speed * change;
     std::cout << "Move: change=" << change << ", speed=" << speed
         << ", oldX=" << oldX << ", newX=" << position.x << std::endl;
+}
+
+void Player::Falling(float change) {
+    if (onGround) return;
+
+    speedY += gravity * change;
+
+    position.y += speedY * change;
 }
 
 bool Player::LoadTexture(const char* path, GLuint& textureID) {
@@ -101,7 +109,7 @@ void Player::InitRenderData() {
 
 
 // я сам хз как оно работает
-Collision Player::CheckCollisionWith(const Block& block) const{
+Collision Player::CheckCollisionWithBlock(const Block& block) const {
     Collision result;
 
     glm::vec2 posA = position;
@@ -113,7 +121,15 @@ Collision Player::CheckCollisionWith(const Block& block) const{
     bool xOverlap = posA.x < posB.x + sizeB.x && posA.x + sizeA.x > posB.x;
     bool yOverlap = posA.y < posB.y + sizeB.y && posA.y + sizeA.y > posB.y;
 
-    if (xOverlap && yOverlap) {
+    // Добавим небольшой допуск для сравнения (float-precision)
+    const float epsilon = 0.001f;
+
+    // Проверка на то, что игрок стоит точно на блоке (по оси Y)
+    bool standingOnBlock =
+        xOverlap &&
+        std::abs((posA.y + sizeA.y) - posB.y) < epsilon;
+
+    if ((xOverlap && yOverlap) || standingOnBlock) {
         result.isColliding = true;
 
         float deltaRight = (posA.x + sizeA.x) - posB.x;
@@ -124,13 +140,19 @@ Collision Player::CheckCollisionWith(const Block& block) const{
         float minX = std::min(deltaRight, deltaLeft);
         float minY = std::min(deltaBottom, deltaTop);
 
-        if (minX < minY)
+        if (standingOnBlock) {
+            result.side = "bottom";
+        }
+        else if (minX < minY) {
             result.side = (deltaRight < deltaLeft) ? "right" : "left";
-        else
+        }
+        else {
             result.side = (deltaBottom < deltaTop) ? "bottom" : "top";
+        }
     }
 
     return result;
 }
+
 
 

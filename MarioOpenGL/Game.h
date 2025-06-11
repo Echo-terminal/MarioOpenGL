@@ -53,6 +53,8 @@ private:
     Player player;
     std::vector<Block> blocks;
 
+    glm::vec2 PlayerStartPos;
+
     // Вспомогательные функции
     GLuint LoadShaders(const char* vertexPath, const char* fragmentPath);
     void RenderWorld();

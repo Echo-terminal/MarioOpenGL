@@ -67,57 +67,62 @@ bool Game::Init() {
 void Game::ProcessInput(float deltaTime) {
     if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS)
         glfwSetWindowShouldClose(window, true);
-
-    if (glfwGetKey(window, GLFW_KEY_LEFT) == GLFW_PRESS)
+    if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
         player.Move(-deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_RIGHT) == GLFW_PRESS) {
+    if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         player.Move(deltaTime);
-    }
-
-    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && !player.isJumping) {
-        player.isJumping = true;
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
+        player.position = glm::vec2(0.0f);
+        //player.position = PlayerStartPos
+    if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && player.onGround) {
+        player.speedY = -300.0f;
+        player.onGround = false;
     }
 }
 
 void Game::Update(float deltaTime) {
     // Обновляем физику игрока
-    if (player.isJumping) {
-        player.position.y -= player.jumpSpeed * deltaTime * 100.0f;
-        if (player.position.y <= 100.0f) {
-            player.position.y = 100.0f;
-            player.isJumping = false;
-        }
-    }
+    player.Falling(deltaTime);
     
+    bool isOnGround = false;
+
     //чекаем жестко колизию | dvorax
     for (int i = 0; i < blocks.size(); i++) {
-        Collision info = player.CheckCollisionWith(blocks[i]);
+        Collision info = player.CheckCollisionWithBlock(blocks[i]);
 
         if (info.isColliding) {
             std::cout << "Collision with block " << i << " from: " << info.side << "\n";
 
-           //перемещаем нарушителя колизийного покоя 
-           //в зависимости от того с какой стороны он | dvorax
-            if (info.side == "top")
-                player.position.y = blocks[i].position.y + player.size.y;
-            if (info.side == "bottom")
+            // Отметим, что игрок стоит на земле, только если столкновение снизу
+            if (info.side == "bottom") {
+                isOnGround = true;
+                player.speedY = 0;
+            }
+
+            // Разруливаем столкновение
+            if (info.side == "top") {
+                player.position.y = blocks[i].position.y + 32.0f; // высота блока
+            }
+            else if (info.side == "bottom") {
                 player.position.y = blocks[i].position.y - player.size.y;
-            if (info.side == "right")
+            }
+            else if (info.side == "right") {
                 player.position.x = blocks[i].position.x - player.size.x;
-            if (info.side == "left")
-                player.position.x = blocks[i].position.x + player.size.x;
-            
-            
-            
+            }
+            else if (info.side == "left") {
+                player.position.x = blocks[i].position.x + 32.0f; // ширина блока
+            }
         }
     }
+
+    player.onGround = isOnGround;
+
 
     // Обновляем камеру после движения игрока
     UpdateCamera();
 }
 
 void Game::UpdateCamera() {
-    // Центрируем камеру на игроке
     cameraX = player.position.x - screenWidth / 2.0f;
 
     //по Y нам не надо камеру двигать, в оригинале было так 
@@ -127,8 +132,7 @@ void Game::UpdateCamera() {
    
     // Можно добавить ограничения камеры, например:
      if (cameraX < 0) cameraX = 0;
-    // if (cameraY < 0) cameraY = 0;
-
+    
     // Создаем новую матрицу проекции с учетом позиции камеры
     projection = glm::ortho(
         cameraX, cameraX + screenWidth,     // left, right
@@ -174,7 +178,8 @@ bool Game::loadLvl(const std::string& path)
             if (symbol == '.') continue;
             if (symbol == 'P')
             {
-                player.position = glm::vec2(i * 32, row * 32);
+                PlayerStartPos = glm::vec2(i * 32, row * 32);
+                player.position = PlayerStartPos;
                 continue;
             }
             Block block;

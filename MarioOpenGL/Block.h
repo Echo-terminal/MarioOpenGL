@@ -6,7 +6,7 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 
-#include <stb_image.h>   // “ќЋ№ ќ так Ч без STB_IMAGE_IMPLEMENTATION
+#include <stb_image.h>
 #include <iostream>
 
     class Block {
