@@ -119,48 +119,50 @@ void Game::Update(float deltaTime) {
         if (info.isColliding) {
             //std::cout << "Collision with block " << i << " from: " << info.side << "\n";
 
-            // Отметим, что игрок стоит на земле, только если столкновение снизу
-            if (info.side == "bottom") {
-                player.blockHit = false;
-                isOnGround = true;
-                player.speedY = 0;
-            }
+            // Отметим, что игрок стоит на земле, только если коллизия снизу
 
-            // Разруливаем столкновение
-            if (info.side == "top") {
+            // Разруливаем колизию
+            switch (info.side[0]) { // используем первый символ строки
+            case 't': // "top"
                 player.position.y = blocks[i].position.y + 32.0f; // высота блока
-                if (blocks[i].blockType == 'B' || blocks[i].blockType == '?' 
+                if (blocks[i].blockType == 'B' || blocks[i].blockType == '?'
                     || blocks[i].blockType == '-' || blocks[i].blockType == '+')
                 {
                     if (!player.blockHit)
                     {
                         blocks[i].isBuf = true;
                         player.blockHit = true;
-
                         if (blocks[i].blockType == '+')
                         {
                             PowerUp newItem;
-                            newItem.LoadTexture( "mush.png", newItem.textureID);
+                            newItem.LoadTexture("mush.png", newItem.textureID);
                             newItem.position = blocks[i].position - glm::vec2(0.0f, 32.0f);
                             powerUps.push_back(newItem);
-
                         }
                     }
                 }
-            }
-            else if (info.side == "bottom") {
+                break;
+
+            case 'b': // "bottom"
                 player.position.y = blocks[i].position.y - player.size.y;
-            }
-            else if (info.side == "right") {
+                player.blockHit = false;
+                isOnGround = true;
+                player.speedY = 0;
+                break;
+
+            case 'r': // "right"
                 player.position.x = blocks[i].position.x - player.size.x;
-            }
-            else if (info.side == "left") {
+                break;
+
+            case 'l': // "left"
                 player.position.x = blocks[i].position.x + 32.0f; // ширина блока
+                break;
             }
         }
     }
 
     for (int i = 0; i < enemies.size(); ++i) {
+
         enemies[i].Update(deltaTime, blocks);
 
         // Проверяем, нужно ли удалить врага
@@ -199,8 +201,10 @@ void Game::Update(float deltaTime) {
                     player.imortal = true;
                     player.imortalTimer = 3.0f;
                 }
-                else restart();
-                return; // выходим, чтобы не продолжать апдейт после рестарта
+                else {
+                    restart();
+                    return; // выходим, чтобы не продолжать апдейт после рестарта
+                } 
             }
         }
     }
@@ -215,10 +219,6 @@ void Game::Update(float deltaTime) {
     }
 
     player.onGround = isOnGround;
-
-    for (Enemy& enemy : enemies) {
-        enemy.Update(deltaTime, blocks);
-    }
 
     for (int i = 0; i < powerUps.size(); i++) powerUps[i].Update(deltaTime, blocks);
     // Обновляем камеру после движения игрока
@@ -310,7 +310,7 @@ bool Game::loadLvl(const std::string& path)
             }
             if (symbol == 'E')
             {
-                Enemy enemy(glm::vec2(i * 32, row * 32)); // границы ±5 блоков
+                Enemy enemy(glm::vec2(i * 32, row * 32));
                 if (!enemy.LoadTexture("enemy.png", enemy.textureID))
                     return false;
                 enemies.push_back(enemy);
