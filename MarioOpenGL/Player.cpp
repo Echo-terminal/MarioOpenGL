@@ -6,7 +6,7 @@
 Player::Player()
     : position(0.0f, 0.0f), speed(400.0f), gravity(900.0f),  // Увеличил с 200 до 400
     blockHit(false), speedY(0.0f), size(glm::vec2(32.0f, 32.0f)),
-    onGround(true), flip(false), big(false),
+    onGround(true), flip(false), big(false), imortal(false),imortalTimer(0.0f),
     initialized(false), VAO(0), VBO(0), EBO(0) {
 }
 

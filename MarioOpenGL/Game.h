@@ -11,6 +11,7 @@
 #include "Player.h"
 #include "Block.h"
 #include "Enemy.h"
+#include "powerUp.h"
 
 class Game {
 public:
@@ -55,6 +56,7 @@ private:
     Player player;
     std::vector<Block> blocks;
     std::vector<Enemy> enemies;
+    std::vector<PowerUp> powerUps;
 
     glm::vec2 PlayerStartPos;
 

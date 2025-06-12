@@ -27,6 +27,7 @@ public:
     glm::vec2 oldPos;
     bool isJump;
     float jumpSpeed = 150.0;
+    bool withPowerUp;
 
     Block();
     std::string getTex(char symbol);

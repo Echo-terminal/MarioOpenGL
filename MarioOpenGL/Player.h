@@ -17,13 +17,15 @@ public:
     float speed;
     float speedY;
     float gravity;
-
+    
     GLuint textureID;
     glm::vec2 size;
     bool onGround;
     bool blockHit;
     bool flip;
     bool big;
+    bool imortal;
+    float imortalTimer;
 
     Player();
     void Move(float change);

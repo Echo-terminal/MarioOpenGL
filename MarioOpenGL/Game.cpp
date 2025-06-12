@@ -89,6 +89,16 @@ void Game::Update(float deltaTime) {
     
     bool isOnGround = false;
 
+
+    if (player.imortal)
+    {
+        player.imortalTimer -= deltaTime;
+        if (player.imortalTimer <= 0.0f)
+        {
+            player.imortal = false;
+            player.imortalTimer = 0.0f;
+        }
+    }
     //чекаем жестко колизию | dvorax
     //теперь ещЄ мы тут и провер€ем на buf | dvorax
     for (int i = 0; i < blocks.size(); i++) 
@@ -97,7 +107,7 @@ void Game::Update(float deltaTime) {
         blocks[i].Buf(deltaTime);
 
         if (info.isColliding) {
-            std::cout << "Collision with block " << i << " from: " << info.side << "\n";
+            //std::cout << "Collision with block " << i << " from: " << info.side << "\n";
 
             // ќтметим, что игрок стоит на земле, только если столкновение снизу
             if (info.side == "bottom") {
@@ -109,19 +119,20 @@ void Game::Update(float deltaTime) {
             // –азруливаем столкновение
             if (info.side == "top") {
                 player.position.y = blocks[i].position.y + 32.0f; // высота блока
-                if (blocks[i].blockType == 'B' || blocks[i].blockType == '?' || blocks[i].blockType == '-')
+                if (blocks[i].blockType == 'B' || blocks[i].blockType == '?' 
+                    || blocks[i].blockType == '-' || blocks[i].blockType == '+')
                 {
                     if (!player.blockHit)
                     {
                         blocks[i].isBuf = true;
                         player.blockHit = true;
 
-                        if (blocks[i].blockType == '?')
+                        if (blocks[i].blockType == '+')
                         {
-                            Block newBlock;
-                            newBlock.LoadTexture(newBlock.getTex('B').c_str(), newBlock.textureID);
-                            newBlock.position = blocks[i].position - glm::vec2(0.0f, 32.0f);
-                            blocks.push_back(newBlock);
+                            PowerUp newItem;
+                            newItem.LoadTexture( "mush.png", newItem.textureID);
+                            newItem.position = blocks[i].position - glm::vec2(0.0f, 32.0f);
+                            powerUps.push_back(newItem);
 
                         }
                     }
@@ -142,8 +153,12 @@ void Game::Update(float deltaTime) {
     for (int i = 0; i < enemies.size(); ++i) {
         Collision info = player.CheckCollisionEnemy(enemies[i]);
         if (info.isColliding) {
-            std::cout << "Collision with enemy " << i << " from: " << info.side << "\n";
-
+            //std::cout << "Collision with enemy " << i << " from: " << info.side << "\n";
+            if (player.imortal)
+            {
+                std::cout << "Imortal " << "\n";
+                continue;
+            }
             if (info.side == "bottom") {
                 // игрок приземлилс€ сверху Ч Ђубиваемї врага
                 enemies.erase(enemies.begin() + i);
@@ -151,12 +166,28 @@ void Game::Update(float deltaTime) {
             }
             else {
                 // люба€ друга€ сторона Ч рестарт
-                restart();
+                
+                // ещЄ нет если мы большие то ещЄ живем | dvorax
+                if (player.big)
+                {
+                    player.ChangeSize();
+                    player.imortal = true;
+                    player.imortalTimer = 3.0f;
+                }
+                else restart();
                 return; // выходим, чтобы не продолжать апдейт после рестарта
             }
         }
     }
-
+    for (int i = 0; i < powerUps.size(); i++)
+    {
+        Collision info = player.CheckCollisionEnemy(powerUps[i]);
+        if (info.isColliding) 
+        {
+            if (!player.big) player.ChangeSize();;
+            powerUps.erase(powerUps.begin() + i);
+        }
+    }
 
     player.onGround = isOnGround;
 
@@ -164,6 +195,7 @@ void Game::Update(float deltaTime) {
         enemy.Update(deltaTime, blocks);
     }
 
+    for (int i = 0; i < powerUps.size(); i++) powerUps[i].Update(deltaTime, blocks);
     // ќбновл€ем камеру после движени€ игрока
     UpdateCamera();
 }
@@ -272,6 +304,7 @@ void Game::RenderWorld() {
         block.Render(shaderProgram, projection);
     for (Enemy& enemy : enemies)
         enemy.Render(shaderProgram, projection);
+    for (int i = 0; i < powerUps.size(); i++) powerUps[i].Render(shaderProgram, projection);
 }
 
 glm::vec2 Game::WorldToScreen(const glm::vec2& worldPos) {

@@ -4,7 +4,7 @@
 
 
 Block::Block()
-    :position(0.0f, 0.0f), blockType(' '),
+    :position(0.0f, 0.0f), blockType(' '), withPowerUp(false),
     isBuf(false), isJump(true), oldPos(0.0f),
     initialized(false), VAO(0), VBO(0), EBO(0) { }
 
@@ -25,7 +25,12 @@ std::string Block::getTex(char symbol)
         case '?':
             return "block3.png";
             break;
+        case '+':
+            withPowerUp = true;
+            return "block3.png";
+            break;
         case '-':
+            withPowerUp = false;
             return "block4.png";
             break;
         default:
@@ -121,7 +126,7 @@ void Block::InitRenderData() {
 void Block::Buf(float deltaTime)
 {
     if (!isBuf) return;
-    if (blockType == '?') LoadTexture(getTex('-').c_str(), textureID);
+    if (blockType == '?' || blockType == '+') LoadTexture(getTex('-').c_str(), textureID);
     std::cout << "BUF" << std::endl;
     if (oldPos == glm::vec2(0.0f, 0.0f)) oldPos = position;
 
