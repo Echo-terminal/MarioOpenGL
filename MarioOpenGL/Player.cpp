@@ -15,7 +15,9 @@ void Player::Move(float change) {
     if (change < 0) flip = true;
     else flip = false;
     float oldX = position.x;
-    position.x += speed * change;
+    if (!(position.x < 0.0f) || change > 0) {
+        position.x += speed * change;
+    }
     std::cout << "Move: change=" << change << ", speed=" << speed
         << ", oldX=" << oldX << ", newX=" << position.x << std::endl;
 }

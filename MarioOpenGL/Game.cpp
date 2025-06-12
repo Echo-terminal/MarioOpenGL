@@ -89,6 +89,16 @@ void Game::Update(float deltaTime) {
     
     bool isOnGround = false;
 
+    if (player.position.y > 300.0f) {
+        restart();
+        return;
+    }
+
+    if (player.position.x >= lvlWidth) {
+        std::cout << "You won!" << std::endl;
+        glfwSetWindowShouldClose(window, true);
+        return;
+    }
 
     if (player.imortal)
     {
@@ -151,6 +161,19 @@ void Game::Update(float deltaTime) {
     }
 
     for (int i = 0; i < enemies.size(); ++i) {
+        enemies[i].Update(deltaTime, blocks);
+
+        // Проверяем, нужно ли удалить врага
+        if (enemies[i].ShouldBeRemoved()) {
+            enemies.erase(enemies.begin() + i);
+            --i;
+            continue;
+        }
+        
+        if (enemies[i].isSquashed) {
+            continue;
+        }
+
         Collision info = player.CheckCollisionEnemy(enemies[i]);
         if (info.isColliding) {
             //std::cout << "Collision with enemy " << i << " from: " << info.side << "\n";
@@ -161,8 +184,10 @@ void Game::Update(float deltaTime) {
             }
             if (info.side == "bottom") {
                 // игрок приземлился сверху — «убиваем» врага
-                enemies.erase(enemies.begin() + i);
-                --i; // чтобы не пропустить следующий элемент после удаления
+                enemies[i].Squash();
+
+                // Добавляем отскок игрока (как в Марио)
+                player.speedY = -200.0f;
             }
             else {
                 // любая другая сторона — рестарт
@@ -203,12 +228,14 @@ void Game::Update(float deltaTime) {
 void Game::restart() {
     // 1. Сбросить состояние игрока
     player.position = PlayerStartPos;
-    player.speedY = 0.0f;
-    player.onGround = true;
+    player.Reset();
 
-    // 2. Очистить старые блоки и врагов
+    // 2. Очистить старые блоки, врагов и power-ups
     blocks.clear();
     enemies.clear();
+    powerUps.clear();
+
+    lvlWidth = 0.0f;
 
     // 3. Загрузить уровень заново
     if (!loadLvl(levelPath)) {
@@ -258,6 +285,7 @@ void Game::Render() {
 bool Game::loadLvl(const std::string& path)
 {
     levelPath = path;
+    lvlWidth = 0.0f;
     std::ifstream lvl(path);
     if (!lvl.is_open())
     {
@@ -290,6 +318,9 @@ bool Game::loadLvl(const std::string& path)
             }
             Block block;
             block.position = glm::vec2(i * 32, row * 32);
+            if (block.position.x > lvlWidth) {
+                lvlWidth = block.position.x;
+            }
             if (!block.LoadTexture(block.getTex(symbol).c_str(), block.textureID))
                 return false;
             blocks.push_back(block);

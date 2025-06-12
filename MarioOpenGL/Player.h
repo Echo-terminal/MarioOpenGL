@@ -36,6 +36,8 @@ public:
     Collision CheckCollisionEnemy(const Enemy& enemy) const;
     void ChangeSize();
 
+    void Reset();
+
 private:
     bool initialized;
     GLuint VAO, VBO, EBO;

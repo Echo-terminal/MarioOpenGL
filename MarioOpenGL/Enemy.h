@@ -25,8 +25,17 @@ public:
     // Параметры для движения туда-сюда
     float moveDirection; // 1.0f = вправо, -1.0f = влево
 
+    bool isSquashed = false;
+    float squashTimer = 0.0f;
+    float squashDuration = 1.5f; // время до исчезновения
+    float originalHeight = 32.0f;
+    float squashedHeight = 8.0f; // высота сплющенного врага
+
     Enemy();
     Enemy(glm::vec2 startPos);
+
+    void Squash(); // новый метод
+    bool ShouldBeRemoved() const; // новый метод
 
     void Update(float deltaTime, const std::vector<Block>& blocks);
     void Move(float deltaTime);

@@ -62,6 +62,7 @@ private:
 
     std::string levelPath;
 
+    float lvlWidth;
 
     // Вспомогательные функции
     GLuint LoadShaders(const char* vertexPath, const char* fragmentPath);

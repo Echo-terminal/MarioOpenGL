@@ -3,14 +3,23 @@
 Enemy::Enemy()
     : position(0.0f, 0.0f), speed(80.0f), gravity(900.0f),
     speedY(0.0f), onGround(false), moveDirection(-1.0f),
-    initialized(false), VAO(0), VBO(0), EBO(0) {}
+    initialized(false), VAO(0), VBO(0), EBO(0),
+    isSquashed(false), squashTimer(0.0f), squashDuration(1.5f),
+    originalHeight(32.0f), squashedHeight(8.0f) {}
 
 Enemy::Enemy(glm::vec2 startPos)
     : position(startPos), speed(80.0f), gravity(900.0f),
     speedY(0.0f), onGround(false), moveDirection(-1.0f),
-    initialized(false), VAO(0), VBO(0), EBO(0) {}
+    initialized(false), VAO(0), VBO(0), EBO(0),
+    isSquashed(false), squashTimer(0.0f), squashDuration(1.5f),
+    originalHeight(32.0f), squashedHeight(8.0f) {}
 
 void Enemy::Update(float deltaTime, const std::vector<Block>& blocks) {
+    if (isSquashed) {
+        squashTimer += deltaTime;
+        return; // сплющенный враг не двигается
+    }
+    
     Move(deltaTime);
     Falling(deltaTime);
     CheckBlockCollisions(blocks);
@@ -134,11 +143,16 @@ void Enemy::Render(GLuint shaderProgram, const glm::mat4& projection) {
 
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(position, 0.0f));
 
+    // Масштабируем спрайт в зависимости от состояния
+    glm::vec3 scale(1.0f, size.y / originalHeight, 1.0f);
+
     // Отражаем спрайт в зависимости от направления движения
     if (moveDirection < 0) {
-        model = glm::scale(model, glm::vec3(-1.0f, 1.0f, 1.0f));
-        model = glm::translate(model, glm::vec3(-size.x, 0.0f, 0.0f));
+        scale.x = -scale.x;
+        model = glm::translate(model, glm::vec3(size.x, 0.0f, 0.0f));
     }
+
+    model = glm::scale(model, scale);
 
     GLuint modelLoc = glGetUniformLocation(shaderProgram, "model");
     GLuint projLoc = glGetUniformLocation(shaderProgram, "projection");
@@ -192,4 +206,23 @@ void Enemy::InitRenderData() {
     glBindVertexArray(0);
 
     initialized = true;
+}
+
+void Enemy::Squash() {
+    if (!isSquashed) {
+        isSquashed = true;
+        squashTimer = 0.0f;
+        size.y = squashedHeight;
+        speedY = 0.0f;
+        speed = 0.0f; // останавливаем движение
+
+        // Корректируем позицию, чтобы враг "прижался" к земле
+        position.y += (originalHeight - squashedHeight);
+
+        std::cout << "Enemy squashed!\n";
+    }
+}
+
+bool Enemy::ShouldBeRemoved() const {
+    return isSquashed && squashTimer >= squashDuration;
 }

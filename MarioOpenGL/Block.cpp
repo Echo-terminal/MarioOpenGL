@@ -151,8 +151,26 @@ void Block::Buf(float deltaTime)
             isBuf = false;
         }
     }
+}
 
+void Player::Reset() {
+    // —брос физических параметров
+    speedY = 0.0f;
+    onGround = true;
 
+    // —брос состо€ний взаимодействи€
+    blockHit = false;
+    flip = false;
 
+    // —брос состо€ний неу€звимости
+    imortal = false;
+    imortalTimer = 0.0f;
 
+    // —бросить размер игрока на маленький
+    if (big) {
+        big = false;
+        size = glm::vec2(32.0f, 32.0f);
+        LoadTexture("player.png", textureID);
+        InitRenderData(); // ќбновить данные дл€ рендера с новым размером
+    }
 }
