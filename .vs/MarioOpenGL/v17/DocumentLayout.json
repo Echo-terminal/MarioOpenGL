@@ -1,12 +1,139 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Game Projects\\MarioOpenGL\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Game.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Player.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Enemy.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Enemy.cpp||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Enemy.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Player.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Game.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Block.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}",
+      "RelativeMoniker": "D:0:0:{EF626352-013A-4B67-BE5C-B928A4D62778}|MarioOpenGL\\MarioOpenGL.vcxproj|solutionrelative:MarioOpenGL\\Block.h||{D0E1A5C6-B359-4E41-9B60-3365922C2A22}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Block.h",
+              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Block.h",
+              "RelativeDocumentMoniker": "MarioOpenGL\\Block.h",
+              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Block.h",
+              "RelativeToolTip": "MarioOpenGL\\Block.h",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAACAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-12T00:23:23.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Enemy.cpp",
+              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Enemy.cpp",
+              "RelativeDocumentMoniker": "MarioOpenGL\\Enemy.cpp",
+              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Enemy.cpp",
+              "RelativeToolTip": "MarioOpenGL\\Enemy.cpp",
+              "ViewState": "AgIAAJcAAAAAAAAAAAAuwMIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-12T00:19:53.415Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Enemy.h",
+              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Enemy.h",
+              "RelativeDocumentMoniker": "MarioOpenGL\\Enemy.h",
+              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Enemy.h",
+              "RelativeToolTip": "MarioOpenGL\\Enemy.h",
+              "ViewState": "AgIAABgAAAAAAAAAAAAuwAcAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-12T00:19:33.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Player.h",
+              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.h",
+              "RelativeDocumentMoniker": "MarioOpenGL\\Player.h",
+              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.h",
+              "RelativeToolTip": "MarioOpenGL\\Player.h",
+              "ViewState": "AgIAAAQAAAAAAAAAAAAuwAsAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-12T00:13:11.563Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Player.cpp",
+              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.cpp",
+              "RelativeDocumentMoniker": "MarioOpenGL\\Player.cpp",
+              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Player.cpp",
+              "RelativeToolTip": "MarioOpenGL\\Player.cpp",
+              "ViewState": "AgIAAHMAAAAAAAAAAAAAAI4AAAAeAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-12T00:06:37.092Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Game.cpp",
+              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.cpp",
+              "RelativeDocumentMoniker": "MarioOpenGL\\Game.cpp",
+              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.cpp",
+              "RelativeToolTip": "MarioOpenGL\\Game.cpp",
+              "ViewState": "AgIAAHIAAAAAAAAAAAAAAIQAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000677|",
+              "WhenOpened": "2025-06-11T23:57:46.234Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Game.h",
+              "DocumentMoniker": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.h",
+              "RelativeDocumentMoniker": "MarioOpenGL\\Game.h",
+              "ToolTip": "C:\\Game Projects\\MarioOpenGL\\MarioOpenGL\\Game.h",
+              "RelativeToolTip": "MarioOpenGL\\Game.h",
+              "ViewState": "AgIAABQAAAAAAAAAAAAuwDwAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000680|",
+              "WhenOpened": "2025-06-11T23:57:05.921Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

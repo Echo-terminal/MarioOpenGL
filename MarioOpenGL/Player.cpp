@@ -154,5 +154,48 @@ Collision Player::CheckCollision(const Block& block) const {
     return result;
 }
 
+Collision Player::CheckCollisionEnemy(const Enemy& enemy) const {
+    Collision result;
 
+    glm::vec2 posA = position;
+    glm::vec2 sizeA = size;
+
+    glm::vec2 posB = enemy.position;
+    glm::vec2 sizeB = enemy.size;
+
+    bool xOverlap = posA.x < posB.x + sizeB.x && posA.x + sizeA.x > posB.x;
+    bool yOverlap = posA.y < posB.y + sizeB.y && posA.y + sizeA.y > posB.y;
+
+    // ƒобавим небольшой допуск дл€ сравнени€ (float-precision)
+    const float epsilon = 0.001f;
+
+    // ѕроверка на то, что игрок стоит точно на блоке (по оси Y)
+    bool standingOnBlock =
+        xOverlap &&
+        std::abs((posA.y + sizeA.y) - posB.y) < epsilon;
+
+    if ((xOverlap && yOverlap) || standingOnBlock) {
+        result.isColliding = true;
+
+        float deltaRight = (posA.x + sizeA.x) - posB.x;
+        float deltaLeft = (posB.x + sizeB.x) - posA.x;
+        float deltaBottom = (posA.y + sizeA.y) - posB.y;
+        float deltaTop = (posB.y + sizeB.y) - posA.y;
+
+        float minX = std::min(deltaRight, deltaLeft);
+        float minY = std::min(deltaBottom, deltaTop);
+
+        if (standingOnBlock) {
+            result.side = "bottom";
+        }
+        else if (minX < minY) {
+            result.side = (deltaRight < deltaLeft) ? "right" : "left";
+        }
+        else {
+            result.side = (deltaBottom < deltaTop) ? "bottom" : "top";
+        }
+    }
+
+    return result;
+}
 

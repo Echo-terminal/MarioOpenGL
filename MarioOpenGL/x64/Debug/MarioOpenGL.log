@@ -1,2 +1,3 @@
-﻿  Enemy.cpp
+﻿  Game.cpp
+LINK : warning LNK4098: библиотека по умолчанию "MSVCRT" конфликтует с использованием других библиотек; используйте /NODEFAULTLIB:library
   MarioOpenGL.vcxproj -> C:\Game Projects\MarioOpenGL\x64\Debug\MarioOpenGL.exe

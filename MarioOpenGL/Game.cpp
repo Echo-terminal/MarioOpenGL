@@ -71,10 +71,8 @@ void Game::ProcessInput(float deltaTime) {
         player.Move(-deltaTime);
     if (glfwGetKey(window, GLFW_KEY_D) == GLFW_PRESS)
         player.Move(deltaTime);
-    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS) {
-        player.position = PlayerStartPos;
-        player.onGround = true;
-    }
+    if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
+        restart();
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && player.onGround) {
         player.speedY = -300.0f;
         player.onGround = false;
@@ -120,6 +118,25 @@ void Game::Update(float deltaTime) {
         }
     }
 
+    for (int i = 0; i < enemies.size(); ++i) {
+        Collision info = player.CheckCollisionEnemy(enemies[i]);
+        if (info.isColliding) {
+            std::cout << "Collision with enemy " << i << " from: " << info.side << "\n";
+
+            if (info.side == "bottom") {
+                // игрок приземлилс€ сверху Ч Ђубиваемї врага
+                enemies.erase(enemies.begin() + i);
+                --i; // чтобы не пропустить следующий элемент после удалени€
+            }
+            else {
+                // люба€ друга€ сторона Ч рестарт
+                restart();
+                return; // выходим, чтобы не продолжать апдейт после рестарта
+            }
+        }
+    }
+
+
     player.onGround = isOnGround;
 
     for (Enemy& enemy : enemies) {
@@ -127,6 +144,26 @@ void Game::Update(float deltaTime) {
     }
 
     // ќбновл€ем камеру после движени€ игрока
+    UpdateCamera();
+}
+
+void Game::restart() {
+    // 1. —бросить состо€ние игрока
+    player.position = PlayerStartPos;
+    player.speedY = 0.0f;
+    player.onGround = true;
+
+    // 2. ќчистить старые блоки и врагов
+    blocks.clear();
+    enemies.clear();
+
+    // 3. «агрузить уровень заново
+    if (!loadLvl(levelPath)) {
+        std::cerr << "Failed to reload level during restart\n";
+        return;
+    }
+
+    // 4. ќбновить камеру, чтобы снова центрироватьс€ на игроке
     UpdateCamera();
 }
 
@@ -167,6 +204,7 @@ void Game::Render() {
 
 bool Game::loadLvl(const std::string& path)
 {
+    levelPath = path;
     std::ifstream lvl(path);
     if (!lvl.is_open())
     {

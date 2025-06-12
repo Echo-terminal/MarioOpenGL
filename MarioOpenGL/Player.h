@@ -6,17 +6,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
 #include "Block.h"
+#include "Enemy.h"
 
 #include <stb_image.h>
 #include <iostream>
-
-
-struct Collision
-{
-    bool isColliding = false;
-    std::string side; // "top", "bottom", "left", "right"
-};
-
 
 class Player {
 public:
@@ -35,6 +28,7 @@ public:
     bool LoadTexture(const char* path, GLuint& textureID);
     void Render(GLuint shaderProgram, const glm::mat4& projection);
     Collision CheckCollision(const Block& block) const;
+    Collision CheckCollisionEnemy(const Enemy& enemy) const;
 
 private:
     bool initialized;

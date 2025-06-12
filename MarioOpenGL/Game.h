@@ -23,6 +23,7 @@ public:
     void Render();
     void CleanUp();
     bool loadLvl(const std::string& path);
+    void restart();
 
     // Камера
     void UpdateCamera();
@@ -56,6 +57,9 @@ private:
     std::vector<Enemy> enemies;
 
     glm::vec2 PlayerStartPos;
+
+    std::string levelPath;
+
 
     // Вспомогательные функции
     GLuint LoadShaders(const char* vertexPath, const char* fragmentPath);
