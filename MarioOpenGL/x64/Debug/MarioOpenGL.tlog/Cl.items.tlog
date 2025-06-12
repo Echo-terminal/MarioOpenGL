@@ -1,7 +1,7 @@
-C:\Game Projects\MarioOpenGL\MarioOpenGL\Block.cpp;C:\Game Projects\MarioOpenGL\MarioOpenGL\x64\Debug\Block.obj
-C:\Game Projects\MarioOpenGL\MarioOpenGL\Enemy.cpp;C:\Game Projects\MarioOpenGL\MarioOpenGL\x64\Debug\Enemy.obj
-C:\Game Projects\MarioOpenGL\MarioOpenGL\Game.cpp;C:\Game Projects\MarioOpenGL\MarioOpenGL\x64\Debug\Game.obj
-C:\Game Projects\MarioOpenGL\MarioOpenGL\glad.c;C:\Game Projects\MarioOpenGL\MarioOpenGL\x64\Debug\glad.obj
-C:\Game Projects\MarioOpenGL\MarioOpenGL\Player.cpp;C:\Game Projects\MarioOpenGL\MarioOpenGL\x64\Debug\Player.obj
-C:\Game Projects\MarioOpenGL\MarioOpenGL\Source.cpp;C:\Game Projects\MarioOpenGL\MarioOpenGL\x64\Debug\Source.obj
-C:\Game Projects\MarioOpenGL\MarioOpenGL\stb_image_impl.cpp;C:\Game Projects\MarioOpenGL\MarioOpenGL\x64\Debug\stb_image_impl.obj
+D:\mario\MarioOpenGL\MarioOpenGL\Block.cpp;D:\mario\MarioOpenGL\MarioOpenGL\x64\Debug\Block.obj
+D:\mario\MarioOpenGL\MarioOpenGL\Enemy.cpp;D:\mario\MarioOpenGL\MarioOpenGL\x64\Debug\Enemy.obj
+D:\mario\MarioOpenGL\MarioOpenGL\Game.cpp;D:\mario\MarioOpenGL\MarioOpenGL\x64\Debug\Game.obj
+D:\mario\MarioOpenGL\MarioOpenGL\glad.c;D:\mario\MarioOpenGL\MarioOpenGL\x64\Debug\glad.obj
+D:\mario\MarioOpenGL\MarioOpenGL\Player.cpp;D:\mario\MarioOpenGL\MarioOpenGL\x64\Debug\Player.obj
+D:\mario\MarioOpenGL\MarioOpenGL\Source.cpp;D:\mario\MarioOpenGL\MarioOpenGL\x64\Debug\Source.obj
+D:\mario\MarioOpenGL\MarioOpenGL\stb_image_impl.cpp;D:\mario\MarioOpenGL\MarioOpenGL\x64\Debug\stb_image_impl.obj

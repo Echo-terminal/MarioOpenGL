@@ -4,12 +4,13 @@
 
 
 Block::Block()
-    :position(0.0f, 0.0f), 
+    :position(0.0f, 0.0f), blockType(' '),
     isBuf(false), isJump(true), oldPos(0.0f),
     initialized(false), VAO(0), VBO(0), EBO(0) { }
 
 std::string Block::getTex(char symbol)
 {
+    blockType = symbol;
     switch (symbol)
     {
         case 'G':
@@ -23,6 +24,9 @@ std::string Block::getTex(char symbol)
             break;
         case '?':
             return "block3.png";
+            break;
+        case '-':
+            return "block4.png";
             break;
         default:
             return "error.jpg"; 
@@ -117,13 +121,14 @@ void Block::InitRenderData() {
 void Block::Buf(float deltaTime)
 {
     if (!isBuf) return;
+    if (blockType == '?') LoadTexture(getTex('-').c_str(), textureID);
     std::cout << "BUF" << std::endl;
     if (oldPos == glm::vec2(0.0f, 0.0f)) oldPos = position;
-    
+
     if (isJump)
     {
         position.y -= jumpSpeed * deltaTime;
-        
+
         if (position.y <= oldPos.y - 16.0f)
         {
             position.y = oldPos.y - 16.0f;
@@ -141,8 +146,8 @@ void Block::Buf(float deltaTime)
             isBuf = false;
         }
     }
-    
-   
-    
-    
+
+
+
+
 }

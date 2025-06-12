@@ -5,10 +5,15 @@
 
 Player::Player()
     : position(0.0f, 0.0f), speed(400.0f), gravity(900.0f),  // Увеличил с 200 до 400
-    speedY(0.0f), onGround(true),
-    initialized(false), VAO(0), VBO(0), EBO(0) {}
+    blockHit(false), speedY(0.0f), size(glm::vec2(32.0f, 32.0f)),
+    onGround(true), flip(false), big(false),
+    initialized(false), VAO(0), VBO(0), EBO(0) {
+}
+
 
 void Player::Move(float change) {
+    if (change < 0) flip = true;
+    else flip = false;
     float oldX = position.x;
     position.x += speed * change;
     std::cout << "Move: change=" << change << ", speed=" << speed
@@ -53,6 +58,12 @@ void Player::Render(GLuint shaderProgram, const glm::mat4& projection) {
     glUseProgram(shaderProgram);
 
     glm::mat4 model = glm::translate(glm::mat4(1.0f), glm::vec3(position, 0.0f));
+
+
+    if (flip) {
+        model = glm::translate(model, glm::vec3(size.x, 0.0f, 0.0f));
+        model = glm::scale(model, glm::vec3(-1.0f, 1.0f, 1.0f));
+    }
     GLuint modelLoc = glGetUniformLocation(shaderProgram, "model");
     GLuint projLoc = glGetUniformLocation(shaderProgram, "projection");
 
@@ -72,9 +83,9 @@ void Player::InitRenderData() {
     float vertices[] = {
         // pos      // tex
          0.0f,  0.0f,  0.0f, 0.0f,
-        32.0f,  0.0f,  1.0f, 0.0f,
-        32.0f, 32.0f,  1.0f, 1.0f,
-         0.0f, 32.0f,  0.0f, 1.0f
+        size.x,  0.0f,  1.0f, 0.0f,
+        size.x, size.y,  1.0f, 1.0f,
+         0.0f, size.y,  0.0f, 1.0f
     };
 
     unsigned int indices[] = {
@@ -199,3 +210,19 @@ Collision Player::CheckCollisionEnemy(const Enemy& enemy) const {
     return result;
 }
 
+void Player::ChangeSize()
+{
+    if (!big)
+    {
+        size = glm::vec2(32.0f, 64.0f);
+        big = true;
+        LoadTexture("player1.png", textureID);
+    }
+    else
+    {
+        size = glm::vec2(32.0f, 32.0f);
+        big = false;
+        LoadTexture("player.png", textureID);
+    }
+    InitRenderData();
+}

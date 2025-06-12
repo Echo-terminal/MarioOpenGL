@@ -20,12 +20,13 @@ public:
     glm::vec2 position;
     GLuint textureID;
     glm::vec2 size = glm::vec2(32.0f, 32.0f);
+    char blockType;
         
     //для buf | dvorax
     bool isBuf;
     glm::vec2 oldPos;
     bool isJump;
-    float jumpSpeed = 100.0;
+    float jumpSpeed = 150.0;
 
     Block();
     std::string getTex(char symbol);

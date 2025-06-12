@@ -77,6 +77,10 @@ void Game::ProcessInput(float deltaTime) {
         player.speedY = -300.0f;
         player.onGround = false;
     }
+    if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
+    {
+        player.ChangeSize();
+    }
 }
 
 void Game::Update(float deltaTime) {
@@ -97,6 +101,7 @@ void Game::Update(float deltaTime) {
 
             // ќтметим, что игрок стоит на земле, только если столкновение снизу
             if (info.side == "bottom") {
+                player.blockHit = false;
                 isOnGround = true;
                 player.speedY = 0;
             }
@@ -104,7 +109,23 @@ void Game::Update(float deltaTime) {
             // –азруливаем столкновение
             if (info.side == "top") {
                 player.position.y = blocks[i].position.y + 32.0f; // высота блока
-                blocks[i].isBuf = true;
+                if (blocks[i].blockType == 'B' || blocks[i].blockType == '?' || blocks[i].blockType == '-')
+                {
+                    if (!player.blockHit)
+                    {
+                        blocks[i].isBuf = true;
+                        player.blockHit = true;
+
+                        if (blocks[i].blockType == '?')
+                        {
+                            Block newBlock;
+                            newBlock.LoadTexture(newBlock.getTex('B').c_str(), newBlock.textureID);
+                            newBlock.position = blocks[i].position - glm::vec2(0.0f, 32.0f);
+                            blocks.push_back(newBlock);
+
+                        }
+                    }
+                }
             }
             else if (info.side == "bottom") {
                 player.position.y = blocks[i].position.y - player.size.y;

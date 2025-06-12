@@ -19,8 +19,11 @@ public:
     float gravity;
 
     GLuint textureID;
-    glm::vec2 size = glm::vec2(32.0f, 32.0f);
+    glm::vec2 size;
     bool onGround;
+    bool blockHit;
+    bool flip;
+    bool big;
 
     Player();
     void Move(float change);
@@ -29,6 +32,7 @@ public:
     void Render(GLuint shaderProgram, const glm::mat4& projection);
     Collision CheckCollision(const Block& block) const;
     Collision CheckCollisionEnemy(const Enemy& enemy) const;
+    void ChangeSize();
 
 private:
     bool initialized;
