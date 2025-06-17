@@ -74,7 +74,7 @@ void Game::ProcessInput(float deltaTime) {
     if (glfwGetKey(window, GLFW_KEY_R) == GLFW_PRESS)
         restart();
     if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_PRESS && player.onGround) {
-        player.speedY = -300.0f;
+        player.speedY = -400.0f;
         player.onGround = false;
     }
     if (glfwGetKey(window, GLFW_KEY_G) == GLFW_PRESS)
@@ -89,7 +89,7 @@ void Game::Update(float deltaTime) {
     
     bool isOnGround = false;
 
-    if (player.position.y > 300.0f) {
+    if (player.position.y > 350.0f) {
         restart();
         return;
     }
@@ -166,7 +166,7 @@ void Game::Update(float deltaTime) {
         enemies[i].Update(deltaTime, blocks);
 
         // Проверяем, нужно ли удалить врага
-        if (enemies[i].ShouldBeRemoved()) {
+        if (enemies[i].ShouldBeRemoved() || enemies[i].position.y > 350.0f) {
             enemies.erase(enemies.begin() + i);
             --i;
             continue;
